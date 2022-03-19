@@ -23,4 +23,3 @@ C:\Users\HP\Desktop\C# Tubes 2\Dashboard\Dashboard\bin\Debug\Microsoft.WindowsAP
 C:\Users\HP\Desktop\C# Tubes 2\Dashboard\Dashboard\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
 C:\Users\HP\Desktop\C# Tubes 2\Dashboard\Dashboard\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
 C:\Users\HP\Desktop\C# Tubes 2\Dashboard\Dashboard\obj\Debug\Dashboard.MainForm.resources
-C:\Users\HP\Desktop\C# Tubes 2\Dashboard\Dashboard\obj\Debug\Dashboard.SampleForm.resources

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,16 +20,6 @@ namespace Dashboard
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BFS_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DFS_CheckedChanged(object sender, EventArgs e)
         {
 
         }
@@ -53,9 +44,31 @@ namespace Dashboard
             }
             else
             {
+
                 WarningLabel.Text = "";
-                SampleForm form = new SampleForm(DirectoryText.Text, FileInput.Text, AllOccurence.Checked, BFS.Checked);
-                form.ShowDialog();
+                //SampleForm form = new SampleForm(DirectoryText.Text, FileInput.Text, AllOccurence.Checked, BFS.Checked);
+
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                List<List<int>> nodes;
+
+                if (BFS.Checked)
+                {
+                    nodes = new BFS().GetNodes();
+                }
+                else
+                {
+                    nodes = new DFS().GetNodes();
+                }
+
+                var g = new Graph();
+                GraphPanel.Controls.Add(g.ShowGraph(nodes));
+
+                FoundDirText.Text = "File Path : " + DirectoryText.Text; //TODO : append found dir
+
+                stopwatch.Stop();
+                TimeSpentText.Text = "Time Spent: " + (stopwatch.ElapsedMilliseconds/1000.0).ToString()+"s";
             }
 
         }

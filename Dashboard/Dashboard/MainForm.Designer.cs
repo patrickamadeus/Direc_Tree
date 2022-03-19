@@ -30,6 +30,7 @@
         {
             this.StartDirectoryInput = new System.Windows.Forms.Button();
             this.InfoPanel = new System.Windows.Forms.Panel();
+            this.WarningLabel = new System.Windows.Forms.Label();
             this.DirectoryText = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchMethods = new System.Windows.Forms.Panel();
@@ -42,7 +43,10 @@
             this.StartingDirText = new System.Windows.Forms.Label();
             this.AppName1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.WarningLabel = new System.Windows.Forms.Label();
+            this.GraphPanel = new System.Windows.Forms.Panel();
+            this.OutputText = new System.Windows.Forms.Label();
+            this.FoundDirText = new System.Windows.Forms.Label();
+            this.TimeSpentText = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             this.SearchMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -75,8 +79,17 @@
             this.InfoPanel.Controls.Add(this.StartDirectoryInput);
             this.InfoPanel.Location = new System.Drawing.Point(0, 0);
             this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(371, 600);
+            this.InfoPanel.Size = new System.Drawing.Size(371, 714);
             this.InfoPanel.TabIndex = 1;
+            // 
+            // WarningLabel
+            // 
+            this.WarningLabel.AutoSize = true;
+            this.WarningLabel.ForeColor = System.Drawing.Color.Red;
+            this.WarningLabel.Location = new System.Drawing.Point(130, 539);
+            this.WarningLabel.Name = "WarningLabel";
+            this.WarningLabel.Size = new System.Drawing.Size(0, 16);
+            this.WarningLabel.TabIndex = 14;
             // 
             // DirectoryText
             // 
@@ -90,7 +103,7 @@
             // 
             this.SearchButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.SearchButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SearchButton.Location = new System.Drawing.Point(29, 518);
+            this.SearchButton.Location = new System.Drawing.Point(29, 533);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(92, 28);
             this.SearchButton.TabIndex = 12;
@@ -102,7 +115,7 @@
             // 
             this.SearchMethods.Controls.Add(this.DFS);
             this.SearchMethods.Controls.Add(this.BFS);
-            this.SearchMethods.Location = new System.Drawing.Point(27, 420);
+            this.SearchMethods.Location = new System.Drawing.Point(27, 435);
             this.SearchMethods.Name = "SearchMethods";
             this.SearchMethods.Size = new System.Drawing.Size(225, 71);
             this.SearchMethods.TabIndex = 11;
@@ -117,7 +130,6 @@
             this.DFS.TabStop = true;
             this.DFS.Text = "DFS";
             this.DFS.UseVisualStyleBackColor = true;
-            this.DFS.CheckedChanged += new System.EventHandler(this.DFS_CheckedChanged);
             // 
             // BFS
             // 
@@ -129,12 +141,11 @@
             this.BFS.TabStop = true;
             this.BFS.Text = "BFS";
             this.BFS.UseVisualStyleBackColor = true;
-            this.BFS.CheckedChanged += new System.EventHandler(this.BFS_CheckedChanged);
             // 
             // SearchMethodLabel
             // 
             this.SearchMethodLabel.AutoSize = true;
-            this.SearchMethodLabel.Location = new System.Drawing.Point(30, 401);
+            this.SearchMethodLabel.Location = new System.Drawing.Point(30, 416);
             this.SearchMethodLabel.Name = "SearchMethodLabel";
             this.SearchMethodLabel.Size = new System.Drawing.Size(166, 16);
             this.SearchMethodLabel.TabIndex = 10;
@@ -154,7 +165,7 @@
             // 
             this.FileInput.Location = new System.Drawing.Point(29, 307);
             this.FileInput.Name = "FileInput";
-            this.FileInput.Size = new System.Drawing.Size(211, 22);
+            this.FileInput.Size = new System.Drawing.Size(254, 22);
             this.FileInput.TabIndex = 8;
             // 
             // FileNameLabel
@@ -196,20 +207,51 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
-            // WarningLabel
+            // GraphPanel
             // 
-            this.WarningLabel.AutoSize = true;
-            this.WarningLabel.ForeColor = System.Drawing.Color.Red;
-            this.WarningLabel.Location = new System.Drawing.Point(130, 524);
-            this.WarningLabel.Name = "WarningLabel";
-            this.WarningLabel.Size = new System.Drawing.Size(0, 16);
-            this.WarningLabel.TabIndex = 14;
+            this.GraphPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.GraphPanel.Location = new System.Drawing.Point(391, 56);
+            this.GraphPanel.Name = "GraphPanel";
+            this.GraphPanel.Size = new System.Drawing.Size(756, 528);
+            this.GraphPanel.TabIndex = 2;
+            // 
+            // OutputText
+            // 
+            this.OutputText.AutoSize = true;
+            this.OutputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OutputText.Location = new System.Drawing.Point(737, 12);
+            this.OutputText.Name = "OutputText";
+            this.OutputText.Size = new System.Drawing.Size(106, 32);
+            this.OutputText.TabIndex = 3;
+            this.OutputText.Text = "Output";
+            // 
+            // FoundDirText
+            // 
+            this.FoundDirText.AutoSize = true;
+            this.FoundDirText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FoundDirText.Location = new System.Drawing.Point(405, 605);
+            this.FoundDirText.Name = "FoundDirText";
+            this.FoundDirText.Size = new System.Drawing.Size(0, 20);
+            this.FoundDirText.TabIndex = 5;
+            // 
+            // TimeSpentText
+            // 
+            this.TimeSpentText.AutoSize = true;
+            this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeSpentText.Location = new System.Drawing.Point(405, 640);
+            this.TimeSpentText.Name = "TimeSpentText";
+            this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
+            this.TimeSpentText.TabIndex = 6;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ClientSize = new System.Drawing.Size(1159, 713);
+            this.Controls.Add(this.TimeSpentText);
+            this.Controls.Add(this.FoundDirText);
+            this.Controls.Add(this.OutputText);
+            this.Controls.Add(this.GraphPanel);
             this.Controls.Add(this.InfoPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
@@ -221,6 +263,7 @@
             this.SearchMethods.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -241,6 +284,10 @@
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Label DirectoryText;
         private System.Windows.Forms.Label WarningLabel;
+        private System.Windows.Forms.Panel GraphPanel;
+        private System.Windows.Forms.Label OutputText;
+        private System.Windows.Forms.Label FoundDirText;
+        private System.Windows.Forms.Label TimeSpentText;
     }
 }
 
