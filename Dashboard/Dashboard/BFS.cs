@@ -3,14 +3,47 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Dashboard
 {
     public class BFS
     {
-        public void BFSsearching(bool type) // type is find all occurence or not
+        public static List<string> BFSsearch(bool type, string root, string filename)
         {
-            // Algo placeholder, can change return type
+            if (type == True)
+            {
+                // find all occurences
+                Queue<string> queue = new Queue<string>();
+                List<string> result = new List<string>();
+                queue.Enqueue(root);
+                while (queue.Count > 0)
+                {
+                    string current = queue.Dequeue();
+                    string[] entryFiles = Directory.GetFiles(current);
+                    foreach (string entryFile in entryFiles)
+                    {
+                        result.Add(entryFile);
+                        if (entryFile.Contains(filename))
+                        {
+                            Console.WriteLine("Found {0} in {1}!", filename, entryFile);
+                        }
+                    }
+
+                    string[] subEntryDirectories = Directory.GetDirectories(current);
+                    foreach (string subEntryDirectory in subEntryDirectories)
+                    {
+                        result.Add(subEntryDirectory);
+                        queue.Enqueue(subEntryDirectory);
+                    }
+                }
+                return result;
+            }
+            else
+            {
+                // TODO FIND THE FIRST OCCURENCE
+                return new List<string>();
+            }
         }
 
         public List<List<int>> GetNodes()
