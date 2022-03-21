@@ -10,20 +10,22 @@ namespace HelloWorld
     class Hello
     {
         static void Main(string[] args)
-        {
-            Dictionary<string, int> res = DFSsearching(true, "./testing", "z.txt");
+        {   
+
+            Dictionary<string, int> res = DFSsearching(true, @"C:\Users\HP\Documents\Kuliah", "cipher.c");
             visualizeMap(res);
             Console.WriteLine();
             Console.WriteLine();
-            Dictionary<string, int> resItem = BFSsearching(true, "./testing", "b.txt");
-            visualizeMap(resItem);
-            Console.WriteLine();
-            Console.WriteLine();
-            Dictionary<string, int> resIjo = BFSsearching(true, "./testing", "b.txt");
-            visualizeMap(resIjo);
-            Console.WriteLine();
+            //Dictionary<string, int> resItem = BFSsearching(true, "./testing", "b.txt");
+            //visualizeMap(resItem);
+            //Console.WriteLine();
+            //Console.WriteLine();
+            //Dictionary<string, int> resIjo = BFSsearching(true, "./testing", "b.txt");
+            //visualizeMap(resIjo);
+            //Console.WriteLine();
 
         }
+
 
         public static Dictionary<string, int> DFSsearching(bool type, string root, string filename)
         {
@@ -136,12 +138,12 @@ namespace HelloWorld
 
         public static void MakeColorParent(string foundPath, ref Dictionary<string, int> map, bool green)
         {
-            List<string> pathParsed = foundPath.Split("/").ToList();
+            List<string> pathParsed = foundPath.Split('\\').ToList();
             if (pathParsed.Count != 1)
             {
                 pathParsed.RemoveAt(pathParsed.Count - 1);
 
-                string keyParent = String.Join("/", pathParsed.ToArray());
+                string keyParent = String.Join("\\", pathParsed.ToArray());
                 if (map.ContainsKey(keyParent))
                 {
                     if(green){
