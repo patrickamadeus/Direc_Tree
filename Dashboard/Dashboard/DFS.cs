@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Dashboard
 {
@@ -30,7 +31,7 @@ namespace Dashboard
                 foreach (string subEntryDirectory in subEntryDirectories)
                 {
                     result.Add(subEntryDirectory);
-                    subResult = DFSsearch(type, subEntryDirectory, filename);
+                    subResult = DFSsearching(type, subEntryDirectory, filename);
                     result.AddRange(subResult);
                 }
 

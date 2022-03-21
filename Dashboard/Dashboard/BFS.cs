@@ -11,7 +11,7 @@ namespace Dashboard
     {
         public static List<string> BFSsearch(bool type, string root, string filename)
         {
-            if (type == True)
+            if (type)
             {
                 // find all occurences
                 Queue<string> queue = new Queue<string>();

@@ -11,105 +11,108 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
-            System.Console.WriteLine("Hello World!");
-            List<string> res = DFSsearch(true, "./testing", "a.txt");
-            visualizeList(res);
-            List<string> res2 = BFSsearch(true, "./testing", "a.txt");
-            visualizeList(res2);
+            Dictionary<string, int> res = DFSsearching(true, "./testing", "z.txt");
+            visualizeMap(res);
+            Console.WriteLine();
+            Console.WriteLine();
+            Dictionary<string, int> resItem = BFSsearching(true, "./testing", "b.txt");
+            visualizeMap(resItem);
+            Console.WriteLine();
+            Console.WriteLine();
+            Dictionary<string, int> resIjo = BFSsearching(true, "./testing", "b.txt");
+            visualizeMap(resIjo);
+            Console.WriteLine();
+
         }
 
-        public static List<string> DFSsearch(bool type, string root, string filename)
+        public static Dictionary<string, int> DFSsearching(bool type, string root, string filename)
         {
-            if (type == true)
-            { // find all occurences
-                List<string> result = new List<string>();
-                string[] entryFiles = Directory.GetFiles(root);
-                foreach (string entryFile in entryFiles)
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            string[] entryFiles = Directory.GetFiles(root);
+            bool found = false;
+            foreach (string entryFile in entryFiles)
+            {
+                if (entryFile.Contains(filename))
                 {
-                    result.Add(entryFile);
-                    if (entryFile.Contains(filename))
-                    {
-                        Console.WriteLine("Found {0} in {1}!", filename, entryFile);
+                    result.Add(entryFile, 1);
+                    found = true;
+                } 
+                // check if first occurences
+                if (!type) { if (found) { return result; } }
+            }
+
+
+            // cari ke sub directory dalemnya
+            string[] subEntryDirectories = Directory.GetDirectories(root);
+            Dictionary<string, int> subResult = new Dictionary<string, int>();
+            foreach (string subEntryDirectory in subEntryDirectories)
+            {
+                result.Add(subEntryDirectory, 0);
+                subResult = DFSsearching(type, subEntryDirectory, filename);
+
+                foreach (KeyValuePair<string, int> i in subResult)
+                {
+                    result.Add(i.Key, i.Value);
+                }
+
+                foreach(KeyValuePair<string,int> i in result.ToList()) 
+                {
+                    if (result[i.Key] == 1) {
+                        MakeColorParent(i.Key, ref result, true);
                     }
                 }
-
-                // cari ke sub directory dalemnya
-                string[] subEntryDirectories = Directory.GetDirectories(root);
-                List<string> subResult = new List<string>();
-                foreach (string subEntryDirectory in subEntryDirectories)
+             
+                // check if first occurences
+                if (!type)
                 {
-                    result.Add(subEntryDirectory);
-                    subResult = DFSsearch(type, subEntryDirectory, filename);
-                    result.AddRange(subResult);
-                }
-
-                return result;
-            }
-            else 
-            { 
-                // TODO FIND THE FIRST OCCURENCE
-                return new List<string>();
-            }
-        }
-
-        public static List<string> BFSsearch(bool type, string root, string filename) 
-        {
-            // BFS
-            if (type == True) 
-            { // find all occurences
-                Queue<string> queue = new Queue<string>();
-                List<string> result = new List<string>();
-                queue.Enqueue(root);
-                while (queue.Count > 0)
-                {
-                    string current = queue.Dequeue();
-                    string[] entryFiles = Directory.GetFiles(current);
-                    foreach (string entryFile in entryFiles)
+                    foreach (KeyValuePair<string, int> i in subResult)
                     {
-                        result.Add(entryFile);
-                        if (entryFile.Contains(filename))
+                        if (result[i.Key] == 1)
                         {
-                            Console.WriteLine("Found {0} in {1}!", filename, entryFile);
+                            return result;
                         }
                     }
-
-                    string[] subEntryDirectories = Directory.GetDirectories(current);
-                    foreach (string subEntryDirectory in subEntryDirectories)
-                    {
-                        result.Add(subEntryDirectory);
-                        queue.Enqueue(subEntryDirectory);
-                    }
                 }
-                return result;
-            } 
-            else 
-            {
-                // TODO FIND THE FIRST OCCURENCE
-                return new List<string>();
             }
-            
+            return result;
         }
 
-        public static void parser(List<string> test)
+        public static Dictionary<string, int> BFSsearching(bool type, string root, string filename)
         {
-            Dictionary<string, int> map = new Dictionary<string, int>();
-            foreach (string i in test)
+            // BFS
+            Queue<string> queue = new Queue<string>();
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            queue.Enqueue(root);
+            while (queue.Count > 0)
             {
-                string[] parsed = i.Split("/");
-                foreach (string j in parsed)
+                string current = queue.Dequeue();
+                string[] entryFiles = Directory.GetFiles(current);
+                bool found = false;
+                foreach (string entryFile in entryFiles)
                 {
-                    if (map.ContainsKey(j))
+                    if (entryFile.Contains(filename))
                     {
-                        map[j]++;
-                    }
-                    else
+                        result.Add(entryFile, 1);
+                        found = true;
+                        MakeColorParent(entryFile, ref result, true);
+                    } 
+                    else 
                     {
-                        map.Add(j, 1);
+                        result.Add(entryFile, -1);
+                        MakeColorParent(entryFile, ref result, false);
                     }
+                    // check if first occurences
+                    if (!type) { if (found) { return result; } }
+                }
+
+                string[] subEntryDirectories = Directory.GetDirectories(current);
+                foreach (string subEntryDirectory in subEntryDirectories)
+                {
+                    result.Add(subEntryDirectory, 0);
+                    queue.Enqueue(subEntryDirectory);
                 }
             }
-
-            visualizeMap(map);
+            return result;
         }
 
         public static void visualizeList(List<string> list)
@@ -125,14 +128,34 @@ namespace HelloWorld
 
         public static void visualizeMap(Dictionary<string, int> map)
         {
-            Console.Write("[");
             foreach (KeyValuePair<string, int> i in map)
             {
-                Console.Write(i.Key + ": " + i.Value + " , ");
+                Console.Write(i.Key + ": " + i.Value + " ");
             }
-            Console.Write("]");
-            Console.WriteLine();
         }
 
+        public static void MakeColorParent(string foundPath, ref Dictionary<string, int> map, bool green)
+        {
+            List<string> pathParsed = foundPath.Split("/").ToList();
+            if (pathParsed.Count != 1)
+            {
+                pathParsed.RemoveAt(pathParsed.Count - 1);
+
+                string keyParent = String.Join("/", pathParsed.ToArray());
+                if (map.ContainsKey(keyParent))
+                {
+                    if(green){
+                        map[keyParent] = 1;
+                    }else{
+                        if (map[keyParent] != 1){
+                            map[keyParent] = -1;
+                        }
+                    }
+                }
+                MakeColorParent(keyParent,ref map, green);
+            }
+        }
+
+        // TODO : PARSING BFS KALO AKHIRNYA .TXT DIILANGIN
     }
 }
