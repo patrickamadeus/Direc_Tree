@@ -34,8 +34,8 @@
             this.DirectoryText = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchMethods = new System.Windows.Forms.Panel();
-            this.DFS = new System.Windows.Forms.RadioButton();
-            this.BFS = new System.Windows.Forms.RadioButton();
+            this.DFSbutton = new System.Windows.Forms.RadioButton();
+            this.BFSbutton = new System.Windows.Forms.RadioButton();
             this.SearchMethodLabel = new System.Windows.Forms.Label();
             this.AllOccurence = new System.Windows.Forms.CheckBox();
             this.FileInput = new System.Windows.Forms.TextBox();
@@ -113,34 +113,34 @@
             // 
             // SearchMethods
             // 
-            this.SearchMethods.Controls.Add(this.DFS);
-            this.SearchMethods.Controls.Add(this.BFS);
+            this.SearchMethods.Controls.Add(this.DFSbutton);
+            this.SearchMethods.Controls.Add(this.BFSbutton);
             this.SearchMethods.Location = new System.Drawing.Point(27, 435);
             this.SearchMethods.Name = "SearchMethods";
             this.SearchMethods.Size = new System.Drawing.Size(225, 71);
             this.SearchMethods.TabIndex = 11;
             // 
-            // DFS
+            // DFSbutton
             // 
-            this.DFS.AutoSize = true;
-            this.DFS.Location = new System.Drawing.Point(7, 35);
-            this.DFS.Name = "DFS";
-            this.DFS.Size = new System.Drawing.Size(55, 20);
-            this.DFS.TabIndex = 1;
-            this.DFS.TabStop = true;
-            this.DFS.Text = "DFS";
-            this.DFS.UseVisualStyleBackColor = true;
+            this.DFSbutton.AutoSize = true;
+            this.DFSbutton.Location = new System.Drawing.Point(7, 35);
+            this.DFSbutton.Name = "DFSbutton";
+            this.DFSbutton.Size = new System.Drawing.Size(55, 20);
+            this.DFSbutton.TabIndex = 1;
+            this.DFSbutton.TabStop = true;
+            this.DFSbutton.Text = "DFS";
+            this.DFSbutton.UseVisualStyleBackColor = true;
             // 
-            // BFS
+            // BFSbutton
             // 
-            this.BFS.AutoSize = true;
-            this.BFS.Location = new System.Drawing.Point(8, 7);
-            this.BFS.Name = "BFS";
-            this.BFS.Size = new System.Drawing.Size(54, 20);
-            this.BFS.TabIndex = 0;
-            this.BFS.TabStop = true;
-            this.BFS.Text = "BFS";
-            this.BFS.UseVisualStyleBackColor = true;
+            this.BFSbutton.AutoSize = true;
+            this.BFSbutton.Location = new System.Drawing.Point(8, 7);
+            this.BFSbutton.Name = "BFSbutton";
+            this.BFSbutton.Size = new System.Drawing.Size(54, 20);
+            this.BFSbutton.TabIndex = 0;
+            this.BFSbutton.TabStop = true;
+            this.BFSbutton.Text = "BFS";
+            this.BFSbutton.UseVisualStyleBackColor = true;
             // 
             // SearchMethodLabel
             // 
@@ -279,8 +279,8 @@
         private System.Windows.Forms.Panel SearchMethods;
         private System.Windows.Forms.Label SearchMethodLabel;
         private System.Windows.Forms.CheckBox AllOccurence;
-        private System.Windows.Forms.RadioButton DFS;
-        private System.Windows.Forms.RadioButton BFS;
+        private System.Windows.Forms.RadioButton DFSbutton;
+        private System.Windows.Forms.RadioButton BFSbutton;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.Label DirectoryText;
         private System.Windows.Forms.Label WarningLabel;

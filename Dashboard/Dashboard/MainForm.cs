@@ -33,10 +33,19 @@ namespace Dashboard
                 DirectoryText.Text = openFileDialog.FileName;
             }
         }
+        public static string visualizeMap(Dictionary<string, int> map)
+        {
+            string result = "";
+            foreach (KeyValuePair<string, int> i in map)
+            {
+                result = result + (i.Key + ": " + i.Value + "  \n");
+            }
+            return result;
+        }
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            if ((!BFS.Checked && !DFS.Checked) || DirectoryText.Text == "" || FileInput.Text == "")
+            if ((!BFSbutton.Checked && !DFSbutton.Checked) || DirectoryText.Text == "" || FileInput.Text == "")
             {
                 WarningLabel.Text = "";
                 System.Threading.Thread.Sleep(20);
@@ -51,22 +60,27 @@ namespace Dashboard
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
-                List<List<int>> nodes;
 
-                if (BFS.Checked)
+                var g = new Graph();
+                if (BFSbutton.Checked)
                 {
-                    nodes = new BFS().GetNodes();
+                    GraphPanel.Controls.Add(g.ShowGraph(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text)));
                 }
                 else
                 {
-                    nodes = new DFS().GetNodes();
+                    GraphPanel.Controls.Add(g.ShowGraph(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text)));
                 }
 
-                var g = new Graph();
-                GraphPanel.Controls.Add(g.ShowGraph(nodes));
-
                 FoundDirText.Text = "File Path : " + DirectoryText.Text; //TODO : append found dir
-
+                if (BFSbutton.Checked)
+                {
+                    FoundDirText.Text = visualizeMap(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text));
+                }
+                else
+                {
+                    FoundDirText.Text = visualizeMap(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text));
+                }
+                
                 stopwatch.Stop();
                 TimeSpentText.Text = "Time Spent: " + (stopwatch.ElapsedMilliseconds/1000.0).ToString()+"s";
             }

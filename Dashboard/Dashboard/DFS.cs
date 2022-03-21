@@ -9,38 +9,77 @@ namespace Dashboard
 {
     public class DFS
     {
-        public static List<string> DFSsearching(bool type, string root, string filename)
+        public static Dictionary<string, int> DFSsearching(bool type, string root, string filename)
         {
-            if (type == true)
-            { 
-                // find all occurences
-                List<string> result = new List<string>();
-                string[] entryFiles = Directory.GetFiles(root);
-                foreach (string entryFile in entryFiles)
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            string[] entryFiles = Directory.GetFiles(root);
+            bool found = false;
+            foreach (string entryFile in entryFiles)
+            {
+                if (entryFile.Contains(filename))
                 {
-                    result.Add(entryFile);
-                    if (entryFile.Contains(filename))
-                    {
-                        Console.WriteLine("Found {0} in {1}!", filename, entryFile);
+                    result.Add(entryFile, 1);
+                    found = true;
+                } 
+                // check if first occurences
+                if (!type) { if (found) { return result; } }
+            }
+
+
+            // cari ke sub directory dalemnya
+            string[] subEntryDirectories = Directory.GetDirectories(root);
+            Dictionary<string, int> subResult = new Dictionary<string, int>();
+            foreach (string subEntryDirectory in subEntryDirectories)
+            {
+                result.Add(subEntryDirectory, 0);
+                subResult = DFSsearching(type, subEntryDirectory, filename);
+
+                foreach (KeyValuePair<string, int> i in subResult)
+                {
+                    result.Add(i.Key, i.Value);
+                }
+
+                foreach(KeyValuePair<string,int> i in result.ToList()) 
+                {
+                    if (result[i.Key] == 1) {
+                        MakeColorParent(i.Key, ref result, true);
                     }
                 }
-
-                // cari ke sub directory dalemnya
-                string[] subEntryDirectories = Directory.GetDirectories(root);
-                List<string> subResult = new List<string>();
-                foreach (string subEntryDirectory in subEntryDirectories)
+             
+                // check if first occurences
+                if (!type)
                 {
-                    result.Add(subEntryDirectory);
-                    subResult = DFSsearching(type, subEntryDirectory, filename);
-                    result.AddRange(subResult);
+                    foreach (KeyValuePair<string, int> i in subResult)
+                    {
+                        if (result[i.Key] == 1)
+                        {
+                            return result;
+                        }
+                    }
                 }
-
-                return result;
             }
-            else
+            return result;
+        }
+
+        public static void MakeColorParent(string foundPath, ref Dictionary<string, int> map, bool green)
+        {
+            List<string> pathParsed = foundPath.Split('\\').ToList();
+            if (pathParsed.Count != 1)
             {
-                // TODO FIND THE FIRST OCCURENCE
-                return new List<string>();
+                pathParsed.RemoveAt(pathParsed.Count - 1);
+
+                string keyParent = String.Join("/", pathParsed.ToArray());
+                if (map.ContainsKey(keyParent))
+                {
+                    if(green){
+                        map[keyParent] = 1;
+                    }else{
+                        if (map[keyParent] != 1){
+                            map[keyParent] = -1;
+                        }
+                    }
+                }
+                MakeColorParent(keyParent,ref map, green);
             }
         }
 

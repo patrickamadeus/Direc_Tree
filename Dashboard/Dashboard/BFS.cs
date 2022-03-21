@@ -9,40 +9,63 @@ namespace Dashboard
 {
     public class BFS
     {
-        public static List<string> BFSsearch(bool type, string root, string filename)
+        public static Dictionary<string, int> BFSsearching(bool type, string root, string filename)
         {
-            if (type)
+            // BFS
+            Queue<string> queue = new Queue<string>();
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            queue.Enqueue(root);
+            while (queue.Count > 0)
             {
-                // find all occurences
-                Queue<string> queue = new Queue<string>();
-                List<string> result = new List<string>();
-                queue.Enqueue(root);
-                while (queue.Count > 0)
+                string current = queue.Dequeue();
+                string[] entryFiles = Directory.GetFiles(current);
+                bool found = false;
+                foreach (string entryFile in entryFiles)
                 {
-                    string current = queue.Dequeue();
-                    string[] entryFiles = Directory.GetFiles(current);
-                    foreach (string entryFile in entryFiles)
+                    if (entryFile.Contains(filename))
                     {
-                        result.Add(entryFile);
-                        if (entryFile.Contains(filename))
-                        {
-                            Console.WriteLine("Found {0} in {1}!", filename, entryFile);
+                        result.Add(entryFile, 1);
+                        found = true;
+                        MakeColorParent(entryFile, ref result, true);
+                    } 
+                    else 
+                    {
+                        result.Add(entryFile, -1);
+                        MakeColorParent(entryFile, ref result, false);
+                    }
+                    // check if first occurences
+                    if (!type) { if (found) { return result; } }
+                }
+
+                string[] subEntryDirectories = Directory.GetDirectories(current);
+                foreach (string subEntryDirectory in subEntryDirectories)
+                {
+                    result.Add(subEntryDirectory, 0);
+                    queue.Enqueue(subEntryDirectory);
+                }
+            }
+            return result;
+        }
+
+        public static void MakeColorParent(string foundPath, ref Dictionary<string, int> map, bool green)
+        {
+            List<string> pathParsed = foundPath.Split('\\').ToList();
+            if (pathParsed.Count != 1)
+            {
+                pathParsed.RemoveAt(pathParsed.Count - 1);
+
+                string keyParent = String.Join("\\", pathParsed.ToArray());
+                if (map.ContainsKey(keyParent))
+                {
+                    if(green){
+                        map[keyParent] = 1;
+                    }else{
+                        if (map[keyParent] != 1){
+                            map[keyParent] = -1;
                         }
                     }
-
-                    string[] subEntryDirectories = Directory.GetDirectories(current);
-                    foreach (string subEntryDirectory in subEntryDirectories)
-                    {
-                        result.Add(subEntryDirectory);
-                        queue.Enqueue(subEntryDirectory);
-                    }
                 }
-                return result;
-            }
-            else
-            {
-                // TODO FIND THE FIRST OCCURENCE
-                return new List<string>();
+                MakeColorParent(keyParent,ref map, green);
             }
         }
 
