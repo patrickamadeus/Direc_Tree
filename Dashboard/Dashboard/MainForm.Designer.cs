@@ -30,7 +30,6 @@
         {
             this.StartDirectoryInput = new System.Windows.Forms.Button();
             this.InfoPanel = new System.Windows.Forms.Panel();
-            this.TimeSpentText = new System.Windows.Forms.Label();
             this.WarningLabel = new System.Windows.Forms.Label();
             this.DirectoryText = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -44,6 +43,7 @@
             this.StartingDirText = new System.Windows.Forms.Label();
             this.AppName1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.TimeSpentText = new System.Windows.Forms.Label();
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.OutputText = new System.Windows.Forms.Label();
             this.FoundDirText = new System.Windows.Forms.Label();
@@ -81,15 +81,6 @@
             this.InfoPanel.Name = "InfoPanel";
             this.InfoPanel.Size = new System.Drawing.Size(371, 907);
             this.InfoPanel.TabIndex = 1;
-            // 
-            // TimeSpentText
-            // 
-            this.TimeSpentText.AutoSize = true;
-            this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeSpentText.Location = new System.Drawing.Point(1057, 721);
-            this.TimeSpentText.Name = "TimeSpentText";
-            this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
-            this.TimeSpentText.TabIndex = 6;
             // 
             // WarningLabel
             // 
@@ -219,6 +210,15 @@
             this.pictureBox1.TabIndex = 2;
             this.pictureBox1.TabStop = false;
             // 
+            // TimeSpentText
+            // 
+            this.TimeSpentText.AutoSize = true;
+            this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeSpentText.Location = new System.Drawing.Point(1057, 721);
+            this.TimeSpentText.Name = "TimeSpentText";
+            this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
+            this.TimeSpentText.TabIndex = 6;
+            // 
             // GraphPanel
             // 
             this.GraphPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
@@ -257,6 +257,9 @@
             this.Controls.Add(this.GraphPanel);
             this.Controls.Add(this.InfoPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(1481, 953);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
