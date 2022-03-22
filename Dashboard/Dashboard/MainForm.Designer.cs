@@ -31,7 +31,6 @@
             this.StartDirectoryInput = new System.Windows.Forms.Button();
             this.InfoPanel = new System.Windows.Forms.Panel();
             this.WarningLabel = new System.Windows.Forms.Label();
-            this.DirectoryText = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchMethods = new System.Windows.Forms.Panel();
             this.DFSbutton = new System.Windows.Forms.RadioButton();
@@ -46,7 +45,9 @@
             this.TimeSpentText = new System.Windows.Forms.Label();
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.OutputText = new System.Windows.Forms.Label();
-            this.FoundDirText = new System.Windows.Forms.Label();
+            this.DirTextInput = new System.Windows.Forms.TextBox();
+            this.FoundDirs = new System.Windows.Forms.ListBox();
+            this.FoundPathText = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             this.SearchMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -65,8 +66,8 @@
             // InfoPanel
             // 
             this.InfoPanel.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.InfoPanel.Controls.Add(this.DirTextInput);
             this.InfoPanel.Controls.Add(this.WarningLabel);
-            this.InfoPanel.Controls.Add(this.DirectoryText);
             this.InfoPanel.Controls.Add(this.SearchButton);
             this.InfoPanel.Controls.Add(this.SearchMethods);
             this.InfoPanel.Controls.Add(this.SearchMethodLabel);
@@ -86,26 +87,18 @@
             // 
             this.WarningLabel.AutoSize = true;
             this.WarningLabel.ForeColor = System.Drawing.Color.Red;
-            this.WarningLabel.Location = new System.Drawing.Point(130, 539);
+            this.WarningLabel.Location = new System.Drawing.Point(142, 545);
             this.WarningLabel.Name = "WarningLabel";
             this.WarningLabel.Size = new System.Drawing.Size(0, 16);
             this.WarningLabel.TabIndex = 14;
-            // 
-            // DirectoryText
-            // 
-            this.DirectoryText.AutoSize = true;
-            this.DirectoryText.Location = new System.Drawing.Point(24, 248);
-            this.DirectoryText.Name = "DirectoryText";
-            this.DirectoryText.Size = new System.Drawing.Size(0, 16);
-            this.DirectoryText.TabIndex = 13;
             // 
             // SearchButton
             // 
             this.SearchButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.SearchButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.SearchButton.Location = new System.Drawing.Point(29, 533);
+            this.SearchButton.Location = new System.Drawing.Point(29, 537);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(100, 35);
+            this.SearchButton.Size = new System.Drawing.Size(100, 29);
             this.SearchButton.TabIndex = 12;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
@@ -146,7 +139,7 @@
             // 
             this.SearchMethodLabel.AutoSize = true;
             this.SearchMethodLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.SearchMethodLabel.Location = new System.Drawing.Point(28, 412);
+            this.SearchMethodLabel.Location = new System.Drawing.Point(28, 410);
             this.SearchMethodLabel.Name = "SearchMethodLabel";
             this.SearchMethodLabel.Size = new System.Drawing.Size(206, 20);
             this.SearchMethodLabel.TabIndex = 10;
@@ -173,7 +166,7 @@
             // 
             this.FileNameLabel.AutoSize = true;
             this.FileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FileNameLabel.Location = new System.Drawing.Point(30, 283);
+            this.FileNameLabel.Location = new System.Drawing.Point(30, 285);
             this.FileNameLabel.Name = "FileNameLabel";
             this.FileNameLabel.Size = new System.Drawing.Size(126, 20);
             this.FileNameLabel.TabIndex = 7;
@@ -214,7 +207,7 @@
             // 
             this.TimeSpentText.AutoSize = true;
             this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeSpentText.Location = new System.Drawing.Point(1057, 721);
+            this.TimeSpentText.Location = new System.Drawing.Point(1042, 725);
             this.TimeSpentText.Name = "TimeSpentText";
             this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
             this.TimeSpentText.TabIndex = 6;
@@ -237,22 +230,41 @@
             this.OutputText.TabIndex = 3;
             this.OutputText.Text = "Output";
             // 
-            // FoundDirText
+            // DirTextInput
             // 
-            this.FoundDirText.AutoSize = true;
-            this.FoundDirText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FoundDirText.Location = new System.Drawing.Point(406, 725);
-            this.FoundDirText.Name = "FoundDirText";
-            this.FoundDirText.Size = new System.Drawing.Size(0, 20);
-            this.FoundDirText.TabIndex = 5;
+            this.DirTextInput.Location = new System.Drawing.Point(28, 242);
+            this.DirTextInput.Name = "DirTextInput";
+            this.DirTextInput.ReadOnly = true;
+            this.DirTextInput.Size = new System.Drawing.Size(254, 22);
+            this.DirTextInput.TabIndex = 16;
+            // 
+            // FoundDirs
+            // 
+            this.FoundDirs.FormattingEnabled = true;
+            this.FoundDirs.ItemHeight = 16;
+            this.FoundDirs.Location = new System.Drawing.Point(408, 743);
+            this.FoundDirs.Name = "FoundDirs";
+            this.FoundDirs.Size = new System.Drawing.Size(570, 116);
+            this.FoundDirs.TabIndex = 7;
+            // 
+            // FoundPathText
+            // 
+            this.FoundPathText.AutoSize = true;
+            this.FoundPathText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FoundPathText.Location = new System.Drawing.Point(416, 713);
+            this.FoundPathText.Name = "FoundPathText";
+            this.FoundPathText.Size = new System.Drawing.Size(134, 22);
+            this.FoundPathText.TabIndex = 8;
+            this.FoundPathText.Text = "Found Path(s) :";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1463, 906);
+            this.Controls.Add(this.FoundPathText);
+            this.Controls.Add(this.FoundDirs);
             this.Controls.Add(this.TimeSpentText);
-            this.Controls.Add(this.FoundDirText);
             this.Controls.Add(this.OutputText);
             this.Controls.Add(this.GraphPanel);
             this.Controls.Add(this.InfoPanel);
@@ -288,12 +300,13 @@
         private System.Windows.Forms.RadioButton DFSbutton;
         private System.Windows.Forms.RadioButton BFSbutton;
         private System.Windows.Forms.Button SearchButton;
-        private System.Windows.Forms.Label DirectoryText;
         private System.Windows.Forms.Label WarningLabel;
         private System.Windows.Forms.Panel GraphPanel;
         private System.Windows.Forms.Label OutputText;
-        private System.Windows.Forms.Label FoundDirText;
         private System.Windows.Forms.Label TimeSpentText;
+        private System.Windows.Forms.TextBox DirTextInput;
+        private System.Windows.Forms.ListBox FoundDirs;
+        private System.Windows.Forms.Label FoundPathText;
     }
 }
 

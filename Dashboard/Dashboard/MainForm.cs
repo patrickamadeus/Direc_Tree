@@ -30,7 +30,7 @@ namespace Dashboard
             openFileDialog.IsFolderPicker = true;
             if (openFileDialog.ShowDialog() == CommonFileDialogResult.Ok)
             {
-                DirectoryText.Text = openFileDialog.FileName;
+                DirTextInput.Text = openFileDialog.FileName;
             }
         }
         public static string visualizeMap(Dictionary<string, int> map)
@@ -45,7 +45,7 @@ namespace Dashboard
 
         private void SearchButton_Click(object sender, EventArgs e)
         {
-            if ((!BFSbutton.Checked && !DFSbutton.Checked) || DirectoryText.Text == "" || FileInput.Text == "")
+            if ((!BFSbutton.Checked && !DFSbutton.Checked) || DirTextInput.Text == "" || FileInput.Text == "")
             {
                 WarningLabel.Text = "";
                 System.Threading.Thread.Sleep(20);
@@ -57,31 +57,40 @@ namespace Dashboard
                 WarningLabel.Text = "";
 
                 Stopwatch stopwatch = new Stopwatch();
-                stopwatch.Start();
+           
 
                 GraphPanel.Controls.Clear();
 
                 var g = new Graph();
+                Dictionary<string, int> nodes;
                 List<string> foundPath = new List<string>();
                 if (BFSbutton.Checked)
                 {
-                    GraphPanel.Controls.Add(g.ShowGraph(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text, ref foundPath),true));
+                    stopwatch.Start();
+                    nodes = BFS.BFSsearching(AllOccurence.Checked, DirTextInput.Text, FileInput.Text, ref foundPath);
+                    stopwatch.Stop();
                 }
                 else
                 {
-                    GraphPanel.Controls.Add(g.ShowGraph(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text, ref foundPath),false));
+                    stopwatch.Start();
+                    nodes = DFS.DFSsearching(AllOccurence.Checked, DirTextInput.Text, FileInput.Text, ref foundPath);
+                    stopwatch.Stop();
                 }
-
-                FoundDirText.Text = "File Path : \n";
+                GraphPanel.Controls.Add(g.ShowGraph(nodes, true));
                 foreach(string path in foundPath)
                 {
-                    FoundDirText.Text += path + "\n";
+                    FoundDirs.Items.Add(path);
                 }
                 
-                stopwatch.Stop();
                 TimeSpentText.Text = "Time Spent: " + (stopwatch.ElapsedMilliseconds/1000.0).ToString()+"s";
             }
 
         }
+    }
+
+    public class hyperlink
+    {
+        public string name;
+        public string url;
     }
 }

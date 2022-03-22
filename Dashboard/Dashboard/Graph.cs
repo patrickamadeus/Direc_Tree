@@ -18,7 +18,7 @@ namespace Dashboard
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
             int color = 0;
-            foreach(KeyValuePair<string,int> node in nodes)
+            foreach(KeyValuePair<string,int> node in nodes.Reverse())
             {
                 List<string> pathParsed = node.Key.Split('\\').ToList();
                 pathParsed.RemoveAt(pathParsed.Count - 1);
