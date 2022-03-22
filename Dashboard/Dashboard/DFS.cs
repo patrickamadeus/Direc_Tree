@@ -9,17 +9,19 @@ namespace Dashboard
 {
     public class DFS
     {
-        public static Dictionary<string, int> DFSsearching(bool type, string root, string filename)
+        public static Dictionary<string, int> DFSsearching(bool type, string root, string filename, ref List<string> foundPath)
         {
             Dictionary<string, int> result = new Dictionary<string, int>();
             string[] entryFiles = Directory.GetFiles(root);
             bool found = false;
             foreach (string entryFile in entryFiles)
             {
-                if (entryFile.Contains(filename))
+                List<string> splitter = entryFile.Split('\\').ToList();
+                if (splitter[splitter.Count - 1].Equals(filename))
                 {
                     result.Add(entryFile, 1);
                     found = true;
+                    foundPath.Add(entryFile);
                 } 
                 // check if first occurences
                 if (!type) { if (found) { return result; } }
@@ -32,7 +34,7 @@ namespace Dashboard
             foreach (string subEntryDirectory in subEntryDirectories)
             {
                 result.Add(subEntryDirectory, 0);
-                subResult = DFSsearching(type, subEntryDirectory, filename);
+                subResult = DFSsearching(type, subEntryDirectory, filename,ref foundPath);
 
                 foreach (KeyValuePair<string, int> i in subResult)
                 {
@@ -68,7 +70,7 @@ namespace Dashboard
             {
                 pathParsed.RemoveAt(pathParsed.Count - 1);
 
-                string keyParent = String.Join("/", pathParsed.ToArray());
+                string keyParent = String.Join("\\", pathParsed.ToArray());
                 if (map.ContainsKey(keyParent))
                 {
                     if(green){
@@ -81,24 +83,6 @@ namespace Dashboard
                 }
                 MakeColorParent(keyParent,ref map, green);
             }
-        }
-
-        public List<List<int>> GetNodes()
-        {
-            List<List<int>> nodes = new List<List<int>>() { };
-
-            // SAMPLE SKEMA DFS <node-asal , node-tujuan, tipe (0 = netral, 1= ketemu, -1 = gketemu)>
-            nodes.Add(new List<int> { 1, 2, 1 });
-            nodes.Add(new List<int> { 2, 4, 1 });
-            nodes.Add(new List<int> { 4, 5, 1 });
-            nodes.Add(new List<int> { 2, 8, -1 });
-            nodes.Add(new List<int> { 8, 9, -1 });
-            nodes.Add(new List<int> { 9, 10, -1 });
-            nodes.Add(new List<int> { 1, 3, 0 });
-            nodes.Add(new List<int> { 3, 6, 0 });
-            nodes.Add(new List<int> { 1, 7, 0 });
-
-            return nodes;
         }
     }
 }

@@ -9,7 +9,7 @@ namespace Dashboard
 {
     public class Graph
     {
-        public Microsoft.Msagl.GraphViewerGdi.GViewer ShowGraph(Dictionary<string,int> nodes)
+        public Microsoft.Msagl.GraphViewerGdi.GViewer ShowGraph(Dictionary<string,int> nodes, bool type)
         {
             //create a viewer object 
             Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
@@ -17,33 +17,49 @@ namespace Dashboard
             //create a graph object 
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
-            bool form = false;
-            string prevNode = "";
+            int color = 0;
             foreach(KeyValuePair<string,int> node in nodes)
             {
-                if (!form)
+                List<string> pathParsed = node.Key.Split('\\').ToList();
+                pathParsed.RemoveAt(pathParsed.Count - 1);
+
+                string keyParent = String.Join("\\", pathParsed.ToArray());
+
+                if(node.Value == 1)
                 {
-                    form = true;
+                    color = 1;
+                    graph.AddEdge(keyParent, node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
                 }
-                else
+                else if (node.Value == 0)
                 {
-                    form = false;
-                    if(node.Value == -1)
+                    if (!type)
                     {
-                        graph.AddEdge(prevNode , node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
-                    }else if(node.Value == 0)
-                    {
-                        graph.AddEdge(prevNode , node.Key);
+                        graph.AddEdge(keyParent,node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                     }
                     else
                     {
-                        graph.AddEdge(prevNode,node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
+                        graph.AddEdge(keyParent, node.Key);
                     }
                 }
-                prevNode = node.Key;
+                else
+                {
+                    color = -1;
+                    graph.AddEdge(keyParent, node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
+                }
+                List<string> splitter = keyParent.Split('\\').ToList();
+                List<string> splitter2 = node.Key.Split('\\').ToList();
+                graph.FindNode(keyParent).Label.Text = splitter[splitter.Count - 1];
+                graph.FindNode(node.Key).Label.Text = splitter2[splitter2.Count - 1];
+                graph.FindNode(keyParent).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+                graph.FindNode(node.Key).Attr.Shape = Microsoft.Msagl.Drawing.Shape.Ellipse;
+                graph.FindNode(keyParent).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Wheat;
+                graph.FindNode(node.Key).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Wheat;
+
+
+
             }
 
-        
+
             //bind the graph to the viewer
             viewer.Graph = graph;
             viewer.Dock = System.Windows.Forms.DockStyle.Fill;

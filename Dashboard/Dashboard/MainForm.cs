@@ -55,30 +55,27 @@ namespace Dashboard
             {
 
                 WarningLabel.Text = "";
-                //SampleForm form = new SampleForm(DirectoryText.Text, FileInput.Text, AllOccurence.Checked, BFS.Checked);
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
+                GraphPanel.Controls.Clear();
 
                 var g = new Graph();
+                List<string> foundPath = new List<string>();
                 if (BFSbutton.Checked)
                 {
-                    GraphPanel.Controls.Add(g.ShowGraph(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text)));
+                    GraphPanel.Controls.Add(g.ShowGraph(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text, ref foundPath),true));
                 }
                 else
                 {
-                    GraphPanel.Controls.Add(g.ShowGraph(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text)));
+                    GraphPanel.Controls.Add(g.ShowGraph(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text, ref foundPath),false));
                 }
 
-                FoundDirText.Text = "File Path : " + DirectoryText.Text; //TODO : append found dir
-                if (BFSbutton.Checked)
+                FoundDirText.Text = "File Path : \n";
+                foreach(string path in foundPath)
                 {
-                    FoundDirText.Text = visualizeMap(BFS.BFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text));
-                }
-                else
-                {
-                    FoundDirText.Text = visualizeMap(DFS.DFSsearching(AllOccurence.Checked, DirectoryText.Text, FileInput.Text));
+                    FoundDirText.Text += path + "\n";
                 }
                 
                 stopwatch.Stop();

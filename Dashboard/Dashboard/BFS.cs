@@ -9,7 +9,7 @@ namespace Dashboard
 {
     public class BFS
     {
-        public static Dictionary<string, int> BFSsearching(bool type, string root, string filename)
+        public static Dictionary<string, int> BFSsearching(bool type, string root, string filename, ref List<string> foundPath)
         {
             // BFS
             Queue<string> queue = new Queue<string>();
@@ -22,15 +22,17 @@ namespace Dashboard
                 bool found = false;
                 foreach (string entryFile in entryFiles)
                 {
-                    if (entryFile.Contains(filename))
+                    List<string> splitter = entryFile.Split('\\').ToList();
+                    if (splitter[splitter.Count - 1].Equals(filename))
                     {
                         result.Add(entryFile, 1);
                         found = true;
+                        foundPath.Add(entryFile);
                         MakeColorParent(entryFile, ref result, true);
                     } 
                     else 
                     {
-                        result.Add(entryFile, -1);
+                        //result.Add(entryFile, -1);
                         MakeColorParent(entryFile, ref result, false);
                     }
                     // check if first occurences
@@ -67,24 +69,6 @@ namespace Dashboard
                 }
                 MakeColorParent(keyParent,ref map, green);
             }
-        }
-
-        public List<List<int>> GetNodes()
-        {
-            List<List<int>> nodes = new List<List<int>>() { };
-
-            // SAMPLE SKEMA BFS <node-asal , node-tujuan, tipe (0 = netral, 1= ketemu, -1 = gketemu)>
-            nodes.Add(new List<int> { 1, 2, 1 });
-            nodes.Add(new List<int> { 1, 3, 0 });
-            nodes.Add(new List<int> { 1, 7, 0 });
-            nodes.Add(new List<int> { 2, 4, 1 });
-            nodes.Add(new List<int> { 2, 8, -1 });
-            nodes.Add(new List<int> { 3, 6, 0 });
-            nodes.Add(new List<int> { 4, 5, 1 });
-            nodes.Add(new List<int> { 8, 9, -1 });
-            nodes.Add(new List<int> { 9, 10, -1 });
-
-            return nodes;
         }
     }
 }

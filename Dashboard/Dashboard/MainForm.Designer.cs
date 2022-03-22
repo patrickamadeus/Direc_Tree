@@ -30,6 +30,7 @@
         {
             this.StartDirectoryInput = new System.Windows.Forms.Button();
             this.InfoPanel = new System.Windows.Forms.Panel();
+            this.TimeSpentText = new System.Windows.Forms.Label();
             this.WarningLabel = new System.Windows.Forms.Label();
             this.DirectoryText = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
@@ -46,7 +47,6 @@
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.OutputText = new System.Windows.Forms.Label();
             this.FoundDirText = new System.Windows.Forms.Label();
-            this.TimeSpentText = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             this.SearchMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -54,7 +54,7 @@
             // 
             // StartDirectoryInput
             // 
-            this.StartDirectoryInput.Location = new System.Drawing.Point(33, 212);
+            this.StartDirectoryInput.Location = new System.Drawing.Point(27, 209);
             this.StartDirectoryInput.Name = "StartDirectoryInput";
             this.StartDirectoryInput.Size = new System.Drawing.Size(92, 28);
             this.StartDirectoryInput.TabIndex = 0;
@@ -79,8 +79,17 @@
             this.InfoPanel.Controls.Add(this.StartDirectoryInput);
             this.InfoPanel.Location = new System.Drawing.Point(0, 0);
             this.InfoPanel.Name = "InfoPanel";
-            this.InfoPanel.Size = new System.Drawing.Size(371, 714);
+            this.InfoPanel.Size = new System.Drawing.Size(371, 907);
             this.InfoPanel.TabIndex = 1;
+            // 
+            // TimeSpentText
+            // 
+            this.TimeSpentText.AutoSize = true;
+            this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TimeSpentText.Location = new System.Drawing.Point(1057, 721);
+            this.TimeSpentText.Name = "TimeSpentText";
+            this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
+            this.TimeSpentText.TabIndex = 6;
             // 
             // WarningLabel
             // 
@@ -101,11 +110,11 @@
             // 
             // SearchButton
             // 
-            this.SearchButton.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.SearchButton.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.SearchButton.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.SearchButton.Location = new System.Drawing.Point(29, 533);
             this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(92, 28);
+            this.SearchButton.Size = new System.Drawing.Size(100, 35);
             this.SearchButton.TabIndex = 12;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = false;
@@ -145,9 +154,10 @@
             // SearchMethodLabel
             // 
             this.SearchMethodLabel.AutoSize = true;
-            this.SearchMethodLabel.Location = new System.Drawing.Point(30, 416);
+            this.SearchMethodLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SearchMethodLabel.Location = new System.Drawing.Point(28, 412);
             this.SearchMethodLabel.Name = "SearchMethodLabel";
-            this.SearchMethodLabel.Size = new System.Drawing.Size(166, 16);
+            this.SearchMethodLabel.Size = new System.Drawing.Size(206, 20);
             this.SearchMethodLabel.TabIndex = 10;
             this.SearchMethodLabel.Text = "Choose Searching Method";
             // 
@@ -163,7 +173,7 @@
             // 
             // FileInput
             // 
-            this.FileInput.Location = new System.Drawing.Point(29, 307);
+            this.FileInput.Location = new System.Drawing.Point(29, 311);
             this.FileInput.Name = "FileInput";
             this.FileInput.Size = new System.Drawing.Size(254, 22);
             this.FileInput.TabIndex = 8;
@@ -171,18 +181,20 @@
             // FileNameLabel
             // 
             this.FileNameLabel.AutoSize = true;
+            this.FileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FileNameLabel.Location = new System.Drawing.Point(30, 283);
             this.FileNameLabel.Name = "FileNameLabel";
-            this.FileNameLabel.Size = new System.Drawing.Size(100, 16);
+            this.FileNameLabel.Size = new System.Drawing.Size(126, 20);
             this.FileNameLabel.TabIndex = 7;
             this.FileNameLabel.Text = "Input File Name";
             // 
             // StartingDirText
             // 
             this.StartingDirText.AutoSize = true;
+            this.StartingDirText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StartingDirText.Location = new System.Drawing.Point(30, 186);
             this.StartingDirText.Name = "StartingDirText";
-            this.StartingDirText.Size = new System.Drawing.Size(159, 16);
+            this.StartingDirText.Size = new System.Drawing.Size(203, 20);
             this.StartingDirText.TabIndex = 6;
             this.StartingDirText.Text = "Choose Starting Directory";
             // 
@@ -212,14 +224,14 @@
             this.GraphPanel.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.GraphPanel.Location = new System.Drawing.Point(391, 56);
             this.GraphPanel.Name = "GraphPanel";
-            this.GraphPanel.Size = new System.Drawing.Size(756, 528);
+            this.GraphPanel.Size = new System.Drawing.Size(1060, 641);
             this.GraphPanel.TabIndex = 2;
             // 
             // OutputText
             // 
             this.OutputText.AutoSize = true;
             this.OutputText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.OutputText.Location = new System.Drawing.Point(737, 12);
+            this.OutputText.Location = new System.Drawing.Point(861, 12);
             this.OutputText.Name = "OutputText";
             this.OutputText.Size = new System.Drawing.Size(106, 32);
             this.OutputText.TabIndex = 3;
@@ -229,25 +241,16 @@
             // 
             this.FoundDirText.AutoSize = true;
             this.FoundDirText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FoundDirText.Location = new System.Drawing.Point(405, 605);
+            this.FoundDirText.Location = new System.Drawing.Point(406, 725);
             this.FoundDirText.Name = "FoundDirText";
             this.FoundDirText.Size = new System.Drawing.Size(0, 20);
             this.FoundDirText.TabIndex = 5;
-            // 
-            // TimeSpentText
-            // 
-            this.TimeSpentText.AutoSize = true;
-            this.TimeSpentText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TimeSpentText.Location = new System.Drawing.Point(405, 640);
-            this.TimeSpentText.Name = "TimeSpentText";
-            this.TimeSpentText.Size = new System.Drawing.Size(0, 20);
-            this.TimeSpentText.TabIndex = 6;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1159, 713);
+            this.ClientSize = new System.Drawing.Size(1463, 906);
             this.Controls.Add(this.TimeSpentText);
             this.Controls.Add(this.FoundDirText);
             this.Controls.Add(this.OutputText);
