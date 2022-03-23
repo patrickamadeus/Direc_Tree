@@ -65,9 +65,13 @@ namespace Dashboard
                         if (map[keyParent] != 1){
                             map[keyParent] = -1;
                         }
+                        else
+                        {
+                            return;
+                        }
                     }
+                    MakeColorParent(keyParent, ref map, green);
                 }
-                MakeColorParent(keyParent,ref map, green);
             }
         }
     }

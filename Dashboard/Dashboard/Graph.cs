@@ -11,14 +11,16 @@ namespace Dashboard
     {
         public Microsoft.Msagl.GraphViewerGdi.GViewer ShowGraph(Dictionary<string,int> nodes, bool type)
         {
+            //List<Microsoft.Msagl.GraphViewerGdi.GViewer> lv = new List<Microsoft.Msagl.GraphViewerGdi.GViewer>();
+
             //create a viewer object 
-            Microsoft.Msagl.GraphViewerGdi.GViewer viewer = new Microsoft.Msagl.GraphViewerGdi.GViewer();
+            Microsoft.Msagl.GraphViewerGdi.GViewer view = new Microsoft.Msagl.GraphViewerGdi.GViewer();
 
             //create a graph object 
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
             foreach(KeyValuePair<string,int> node in nodes.Reverse())
-            {
+            {   
                 List<string> pathParsed = node.Key.Split('\\').ToList();
                 pathParsed.RemoveAt(pathParsed.Count - 1);
 
@@ -52,16 +54,14 @@ namespace Dashboard
                 graph.FindNode(keyParent).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Wheat;
                 graph.FindNode(node.Key).Attr.FillColor = Microsoft.Msagl.Drawing.Color.Wheat;
 
-
-
             }
 
 
             //bind the graph to the viewer
-            viewer.Graph = graph;
-            viewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            viewer.OutsideAreaBrush = Brushes.White;
-            return viewer;
+            view.Graph = graph;
+            view.Dock = System.Windows.Forms.DockStyle.Fill;
+            view.OutsideAreaBrush = Brushes.White;
+            return view;
         }
     }
 }

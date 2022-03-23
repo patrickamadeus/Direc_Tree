@@ -77,8 +77,10 @@ namespace Dashboard
                     nodes = DFS.DFSsearching(AllOccurence.Checked, DirTextInput.Text, FileInput.Text, ref foundPath);
                     stopwatch.Stop();
                 }
-    
-                GraphPanel.Controls.Add(g.ShowGraph(nodes, true));
+
+                GraphPanel.Controls.Add(g.ShowGraph(nodes, BFSbutton.Checked));
+
+
 
                 foreach (string path in foundPath)
                 {
