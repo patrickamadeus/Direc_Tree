@@ -17,7 +17,6 @@ namespace Dashboard
             //create a graph object 
             Microsoft.Msagl.Drawing.Graph graph = new Microsoft.Msagl.Drawing.Graph("graph");
 
-            int color = 0;
             foreach(KeyValuePair<string,int> node in nodes.Reverse())
             {
                 List<string> pathParsed = node.Key.Split('\\').ToList();
@@ -27,7 +26,6 @@ namespace Dashboard
 
                 if(node.Value == 1)
                 {
-                    color = 1;
                     graph.AddEdge(keyParent, node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Green;
                 }
                 else if (node.Value == 0)
@@ -43,7 +41,6 @@ namespace Dashboard
                 }
                 else
                 {
-                    color = -1;
                     graph.AddEdge(keyParent, node.Key).Attr.Color = Microsoft.Msagl.Drawing.Color.Red;
                 }
                 List<string> splitter = keyParent.Split('\\').ToList();

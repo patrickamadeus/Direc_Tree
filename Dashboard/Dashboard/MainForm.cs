@@ -57,8 +57,9 @@ namespace Dashboard
                 WarningLabel.Text = "";
 
                 Stopwatch stopwatch = new Stopwatch();
-           
 
+                // Clearing Old Output(s)
+                FoundDirs.Items.Clear();
                 GraphPanel.Controls.Clear();
 
                 var g = new Graph();
@@ -76,8 +77,10 @@ namespace Dashboard
                     nodes = DFS.DFSsearching(AllOccurence.Checked, DirTextInput.Text, FileInput.Text, ref foundPath);
                     stopwatch.Stop();
                 }
+    
                 GraphPanel.Controls.Add(g.ShowGraph(nodes, true));
-                foreach(string path in foundPath)
+
+                foreach (string path in foundPath)
                 {
                     FoundDirs.Items.Add(path);
                 }
@@ -85,7 +88,10 @@ namespace Dashboard
                 TimeSpentText.Text = "Time Spent: " + (stopwatch.ElapsedMilliseconds/1000.0).ToString()+"s";
             }
 
+            
         }
+
+        private void FoundDirs_SelectedIndexChanged(object sender, EventArgs e) => System.Diagnostics.Process.Start("explorer.exe", FoundDirs.SelectedItem.ToString());
     }
 
     public class hyperlink

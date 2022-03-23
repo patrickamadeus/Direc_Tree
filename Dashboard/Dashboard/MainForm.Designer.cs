@@ -30,6 +30,7 @@
         {
             this.StartDirectoryInput = new System.Windows.Forms.Button();
             this.InfoPanel = new System.Windows.Forms.Panel();
+            this.DirTextInput = new System.Windows.Forms.TextBox();
             this.WarningLabel = new System.Windows.Forms.Label();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SearchMethods = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@
             this.TimeSpentText = new System.Windows.Forms.Label();
             this.GraphPanel = new System.Windows.Forms.Panel();
             this.OutputText = new System.Windows.Forms.Label();
-            this.DirTextInput = new System.Windows.Forms.TextBox();
             this.FoundDirs = new System.Windows.Forms.ListBox();
             this.FoundPathText = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
@@ -82,6 +82,14 @@
             this.InfoPanel.Name = "InfoPanel";
             this.InfoPanel.Size = new System.Drawing.Size(371, 907);
             this.InfoPanel.TabIndex = 1;
+            // 
+            // DirTextInput
+            // 
+            this.DirTextInput.Location = new System.Drawing.Point(28, 242);
+            this.DirTextInput.Name = "DirTextInput";
+            this.DirTextInput.ReadOnly = true;
+            this.DirTextInput.Size = new System.Drawing.Size(254, 22);
+            this.DirTextInput.TabIndex = 16;
             // 
             // WarningLabel
             // 
@@ -230,14 +238,6 @@
             this.OutputText.TabIndex = 3;
             this.OutputText.Text = "Output";
             // 
-            // DirTextInput
-            // 
-            this.DirTextInput.Location = new System.Drawing.Point(28, 242);
-            this.DirTextInput.Name = "DirTextInput";
-            this.DirTextInput.ReadOnly = true;
-            this.DirTextInput.Size = new System.Drawing.Size(254, 22);
-            this.DirTextInput.TabIndex = 16;
-            // 
             // FoundDirs
             // 
             this.FoundDirs.FormattingEnabled = true;
@@ -246,6 +246,7 @@
             this.FoundDirs.Name = "FoundDirs";
             this.FoundDirs.Size = new System.Drawing.Size(570, 116);
             this.FoundDirs.TabIndex = 7;
+            this.FoundDirs.SelectedIndexChanged += new System.EventHandler(this.FoundDirs_SelectedIndexChanged);
             // 
             // FoundPathText
             // 
