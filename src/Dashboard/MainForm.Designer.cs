@@ -48,7 +48,6 @@
             this.OutputText = new System.Windows.Forms.Label();
             this.FoundDirs = new System.Windows.Forms.ListBox();
             this.FoundPathText = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.InfoPanel.SuspendLayout();
             this.SearchMethods.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -67,7 +66,6 @@
             // InfoPanel
             // 
             this.InfoPanel.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.InfoPanel.Controls.Add(this.label1);
             this.InfoPanel.Controls.Add(this.DirTextInput);
             this.InfoPanel.Controls.Add(this.WarningLabel);
             this.InfoPanel.Controls.Add(this.SearchButton);
@@ -260,15 +258,6 @@
             this.FoundPathText.TabIndex = 8;
             this.FoundPathText.Text = "Found Path(s) :";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(35, 620);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(44, 16);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "label1";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -319,7 +308,6 @@
         private System.Windows.Forms.TextBox DirTextInput;
         private System.Windows.Forms.ListBox FoundDirs;
         private System.Windows.Forms.Label FoundPathText;
-        private System.Windows.Forms.Label label1;
     }
 }
 
