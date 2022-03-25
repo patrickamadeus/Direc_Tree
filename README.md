@@ -2,6 +2,9 @@
 Tugas Besar 2 IF2211 Strategi Algoritma Semester II Tahun 2021/2022 
 Pemanfaatan Algoritma BFS dan DFS dalam implementasi folder crawling
 
+## Penjelasan Program
+Program ini berfungsi untuk melakukan pencarian suatu file dalam suatu root folder. Hasil yang ditampilkan akan berupa Path found dan juga diagram tree yang menunjukkan path pencariannya dan  warna merah dan hijau sebagai penanda ditemukannya file. 
+
 ## Algoritma BFS dan DFS
 ### BFS ( Breadth-First Search )
 Breadth-first search merupakan algoritma untuk mencari sebuah simpul dalam sebuah pohon yang mengandung nilai tertentu. BFS melakukan pengecekan pada semua kemungkinan simpul di kedalaman selanjutnya, baru setelah itu melakukan pengecekan untuk kedalaman selanjutnya.
@@ -24,6 +27,17 @@ terdapat dua opsi DFS, yakni pencarian seluruh simpul ataupun pencarian simpul p
 
 
 ## Setup
+* Pastikan semua Requirements di atas telah didownload dan diinstall dengan baik
+* Lakukan Clone repository pada link github yang dimaksud. 
+* Buka aplikasi Visual Studio 
+* Klik "open a project or solution" pada menu awal Visual Studio
+* Pilih file Dashboard.sln yang berlokasi di Tubes2_13520075/src/Dashboard.sln
+* Klik "start" pada bagian atas menu visual studio
+* Ketika Windows Form telah terbuka, klik "Choose.." dan select folder lokasi awal pencarian
+* masukkan nama file yang ingin dicari pada kolom "Input file name"
+* Pilih BFS/DFS pada pilihan "Choose searching method" sesuai dengan algoritma yang ingin digunakan
+* Ceklis pada pilihan "Find All Occurence jika ingin menampilkan semua path yang sesuai
+* Biarkan kosong pada pilihan tersebut jika hanya ingin menampilkan path pertama yang ditemukan
 
 
 ## Authors Information
