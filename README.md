@@ -34,5 +34,6 @@ terdapat dua opsi DFS, yakni pencarian seluruh simpul ataupun pencarian simpul p
 | Azmi Alfatih Shalahuddin | 13520158 | 13520158@std.stei.itb.ac.id |
 
 ## Referensi 
-Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 1) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag1.pdf
-Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 2) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag2.pdf
+Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 1) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag1.pdf.
+
+Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 2) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag2.pdf.
