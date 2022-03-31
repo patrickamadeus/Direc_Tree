@@ -1,4 +1,4 @@
-# Tubes2_13520075
+# DirecTree 🎄
 Tugas Besar 2 IF2211 Strategi Algoritma Semester II Tahun 2021/2022 
 Pemanfaatan Algoritma BFS dan DFS dalam implementasi folder crawling
 
@@ -21,9 +21,9 @@ Dalam hal ini, DFS melakukan pencarian rekursif dimulai dari root folder yang di
 terdapat dua opsi DFS, yakni pencarian seluruh simpul ataupun pencarian simpul pertama.
 
 ## Environment Requirements
-* C# [Download] (https://www.microsoft.com/en-us/download/details.aspx?id=7029)
-* .NET Framework [Download] (https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.3-windows-x64-installer)
-* Visual Studio [Download] (https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
+* [C#](https://www.microsoft.com/en-us/download/details.aspx?id=7029)
+* [.NET Framework](https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/runtime-desktop-6.0.3-windows-x64-installer)
+* [Visual Studio](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
 
 ## Setup
@@ -31,7 +31,7 @@ terdapat dua opsi DFS, yakni pencarian seluruh simpul ataupun pencarian simpul p
 * Lakukan Clone repository pada link github yang dimaksud. 
 * Buka aplikasi Visual Studio 
 * Klik "open a project or solution" pada menu awal Visual Studio
-* Pilih file Dashboard.sln yang berlokasi di Tubes2_13520075/src/Dashboard.sln
+* Pilih file `Dashboard.sln` yang berlokasi di `Tubes2_13520075/src/Dashboard.sln`
 * Klik "start" pada bagian atas menu visual studio
 * Ketika Windows Form telah terbuka, klik "Choose.." dan select folder lokasi awal pencarian
 * masukkan nama file yang ingin dicari pada kolom "Input file name"
@@ -48,6 +48,6 @@ terdapat dua opsi DFS, yakni pencarian seluruh simpul ataupun pencarian simpul p
 | Azmi Alfatih Shalahuddin | 13520158 | 13520158@std.stei.itb.ac.id |
 
 ## Referensi 
-Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 1) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag1.pdf.
+[Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 1) (Versi baru 2021)](https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag1.pdf.)
 
-Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 2) (Versi baru 2021) https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag2.pdf.
+[Munir, Rinaldi, Breadth First Search (BFS) dan Depth First Search (DFS) (Bagian 2) (Versi baru 2021)](https://informatika.stei.itb.ac.id/~rinaldi.munir/Stmik/2020-2021/BFS-DFS-2021-Bag2.pdf.)
